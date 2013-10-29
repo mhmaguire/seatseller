@@ -1,0 +1,9 @@
+.form
+	=semantic_form_for @trip do |f|
+		=f.inputs do 
+			=f.input :title
+			=f.input :start
+			=f.input :destination
+			=f.input :available_seats
+		=f.actions do 
+			=f.action :submit

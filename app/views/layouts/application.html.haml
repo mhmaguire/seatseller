@@ -1,0 +1,28 @@
+!!!
+%html
+	%head
+		%title SeatSeller
+		= stylesheet_link_tag    "application", :media => "all"
+		= javascript_include_tag "application"
+		= csrf_meta_tags
+	%body.container
+		%header.row
+			#brand.eight.columns.alpha
+				%h1 Seat Seller
+			%nav.top_nav.eight.columns.omega
+				%ul
+					%li=link_to 'Find Passengers', new_trip_path
+					%li=link_to 'Find a Seat', root_path
+					-if current_user
+						
+						%li= link_to 'Sign Out', sign_out_path, method: :delete
+						%li= current_user.email
+					-else 
+						%li= link_to 'Sign Up', sign_up_path
+						%li= link_to 'Sign In', sign_in_path
+		-unless flash.empty?
+			.flash
+				-flash.each do |k, v|
+					%p{class: "#{k}"}= "#{v}"
+		.main
+			= yield

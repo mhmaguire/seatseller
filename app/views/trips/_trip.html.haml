@@ -1,0 +1,13 @@
+%li.trip
+	%h4= trip.title
+	%h5= "From #{trip.start} -----> To #{trip.destination}"
+	%p= "Available Seats #{trip.available_seats}"
+	.row
+		%h6.poster
+			Posted by: 
+			=link_to "#{trip.email}", '#'
+		.links
+			=link_to 'View Details...', trip_path(trip)
+			-if can? :manage, trip
+				=link_to 'Edit', edit_trip_path(trip)
+				=link_to 'Destroy', trip_path(trip), method: :delete, confirm: "Are you sure?"

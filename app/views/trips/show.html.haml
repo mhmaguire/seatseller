@@ -1,0 +1,24 @@
+.trip_detail.row
+	%h3.title= @trip.title
+	.links
+		-if can? :request, @trip
+			=link_to 'Request Fare', trip_fares_path(@trip), method: :post
+		-if can? :manage, @trip
+			=link_to 'Edit', edit_trip_path(@trip)
+			=link_to 'Destroy', trip_path(@trip), method: :delete, confirm: "Are you sure?"
+	%div.eight.columns.alpha
+		%h5= "Seats Available: #{@trip.available_seats}"
+		%h5= "Time: #{@trip.departure_time}"
+	.details.eight.columns.omega
+		%h5= "Start: #{@trip.start}"
+		%h5= "Destination: #{@trip.destination}"
+-if can? :manage, @trip
+	.row
+		.passengers.eight.columns.alpha
+			%h4 Approved Passengers
+			%ul
+				=render partial: 'passenger', collection: @trip.passengers
+		.requests.eight.columns.omega
+			%h4 Seat Requests
+			%ul
+				=render partial: 'request', collection: @trip.requests
