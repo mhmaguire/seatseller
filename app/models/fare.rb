@@ -5,6 +5,8 @@ class Fare < ActiveRecord::Base
 
   delegate :email, to: :passenger
 
+  scope :pending, where(approved: false)
+
   def approve!
   	self.approved = true
   	trip.approve_fare(self)

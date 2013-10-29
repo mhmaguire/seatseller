@@ -40,6 +40,9 @@ header {
 
 .passengers {
 	margin: 0 10px 0 0; 
-	.pass_detail { float: left; }
-	a { float: right; }
+}
+
+.request {
+	div { float: left; }
+	.links { float: right; }
 }

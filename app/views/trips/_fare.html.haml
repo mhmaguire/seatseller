@@ -1,0 +1,7 @@
+%li.request
+	%div
+		%h5= "User: #{fare.email}"
+		%p= "Submitted at: #{fare.created_at}"
+	.links
+		-if can? :approve, fare
+			=link_to 'Approve Passenger', fare_path(fare), method: :put, confirm: "Approve this Passenger?"
